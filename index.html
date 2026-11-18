@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title id="page-title">Rahul Gupta | AI/ML, Data Engineering & Quantum Computing</title>
+  <meta name="description" content="Personal digital business card and portfolio links for Rahul Gupta.">
+  <meta name="author" content="Rahul Gupta">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rahul Gupta - Digital Business Card">
+  <meta property="og:description" content="AI/ML, Data Engineering & Quantum Computing">
+  <meta property="og:image" content="profile.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327272a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='16 18 22 12 16 6'></polyline><polyline points='8 6 2 12 8 18'></polyline></svg>">
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            zinc: {
+              50: '#fafafa',
+              100: '#f4f4f5',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#71717a',
+              600: '#52525b',
+              700: '#3f3f46',
+              800: '#27272a',
+              900: '#18181b',
+              950: '#09090b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Prevent theme flicker: Default to dark mode -->
+  <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+  </script>
+
+  <style>
+    /* Prevent horizontal scrolling and rubber-band artifacts */
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Smooth focus rings */
+    *:focus-visible {
+      outline: 2px solid #71717a;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased min-h-dvh flex flex-col justify-between selection:bg-zinc-200 dark:selection:bg-zinc-800 transition-colors duration-200">
+
+  <!-- Top-Right Corner Controls (Floating cleanly with safe-area padding) -->
+  <header
+    class="fixed top-4 right-4 z-40 flex items-center gap-2 pt-[env(safe-area-inset-top,0px)] pr-[env(safe-area-inset-right,0px)]">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" type="button" aria-label="Toggle dark/light theme"
+      class="h-11 w-11 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all duration-150 shadow-sm focus:outline-none">
+      <!-- Sun Icon (shown in dark mode) -->
+      <svg id="sun-icon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2" />
+        <path d="M12 20v2" />
+        <path d="m4.93 4.93 1.41 1.41" />
+        <path d="m17.66 17.66 1.41 1.41" />
+        <path d="M2 12h2" />
+        <path d="M20 12h2" />
+        <path d="m6.34 17.66-1.41 1.41" />
+        <path d="m19.07 4.93-1.41 1.41" />
+      </svg>
+      <!-- Moon Icon (shown in light mode) -->
+      <svg id="moon-icon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z" />
+      </svg>
+    </button>
+
+    <!-- Share Button (Opens Sleek Modal) -->
+    <button id="share-btn" type="button" aria-label="Share this profile"
+      class="h-11 w-11 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all duration-150 shadow-sm focus:outline-none">
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+        <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Center Container (max-w-md mx-auto w-full px-4 py-12 flex flex-col items-center justify-center min-h-dvh) -->
+  <main class="max-w-md mx-auto w-full px-4 py-12 flex flex-col items-center justify-center min-h-dvh">
+
+    <!-- Profile Avatar -->
+    <div class="relative group">
+      <img src="profile.png" alt="Rahul Gupta"
+        class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-sm ring-2 ring-zinc-200 dark:ring-zinc-800 ring-offset-4 ring-offset-zinc-50 dark:ring-offset-zinc-950 transition-transform duration-300 group-hover:scale-105">
+    </div>
+
+    <!-- Title & Dynamic Subtitle -->
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-center text-zinc-900 dark:text-zinc-50 mt-4">
+      Rahul Gupta
+    </h1>
+    <p id="profile-subtitle"
+      class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 text-center max-w-xs sm:max-w-sm mt-1.5 leading-relaxed font-normal">
+      AI/ML, Data Engineering & Quantum Computing
+    </p>
+
+    <!-- Stacked Action Links -->
+    <div class="w-full mt-8 flex flex-col gap-3">
+
+      <!-- 1. Resume Link (Primary High-Contrast Button) -->
+      <a id="resume-link" href="./resumes/general_resume.pdf" target="_blank" rel="noopener noreferrer"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] border border-transparent touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-100 dark:text-zinc-900 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+            <path d="M10 9H8" />
+            <path d="M16 13H8" />
+            <path d="M16 17H8" />
+          </svg>
+          <span class="text-sm sm:text-base font-semibold tracking-tight">Resume</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="text-xs uppercase tracking-wider font-semibold opacity-75 mr-1 hidden sm:inline">PDF</span>
+          <svg
+            class="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-100 dark:group-hover:text-zinc-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h10v10" />
+            <path d="M7 17 17 7" />
+          </svg>
+        </div>
+      </a>
+
+      <!-- 2. LinkedIn -->
+      <a href="https://www.linkedin.com/in/rahul-gupta-pythondev" target="_blank" rel="noopener noreferrer"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-zinc-200 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+          <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">LinkedIn</span>
+        </div>
+        <svg
+          class="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+      <!-- 3. GitHub -->
+      <a href="https://github.com/rahul-gupta-2004" target="_blank" rel="noopener noreferrer"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-zinc-200 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">GitHub</span>
+        </div>
+        <svg
+          class="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+      <!-- 4. Medium -->
+      <a href="https://medium.com/@rahul.techarticles" target="_blank" rel="noopener noreferrer"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-zinc-200 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+          </svg>
+          <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">Medium</span>
+        </div>
+        <svg
+          class="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+      <!-- 5. WhatsApp -->
+      <a href="https://wa.me/917506732498" target="_blank" rel="noopener noreferrer"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-zinc-200 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.42 1.44.54.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z" />
+          </svg>
+          <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">WhatsApp</span>
+        </div>
+        <svg
+          class="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+      <!-- 6. Email -->
+      <a href="mailto:rahulg.tech@proton.me"
+        class="group relative flex items-center justify-between w-full px-4 py-3.5 min-h-[52px] rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] touch-manipulation">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-zinc-200 shrink-0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">Email</span>
+        </div>
+        <svg
+          class="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="w-full text-center py-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] text-xs text-zinc-400 dark:text-zinc-600">
+    <p>&copy; <span id="current-year"></span> Rahul Gupta</p>
+  </footer>
+
+  <!-- Share Modal Dialog (shadcn/ui aesthetic with backdrop blur & smooth animation) -->
+  <div id="share-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-200 opacity-0 pointer-events-none">
+
+    <!-- Backdrop Blur Overlay -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200"></div>
+
+    <!-- Modal Content Card -->
+    <div id="modal-content"
+      class="relative w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xl transition-all duration-200 transform scale-95 z-10">
+
+      <!-- 1. Header with 'Share Profile' and Close (X) button -->
+      <div class="flex items-center justify-between pb-1">
+        <div>
+          <h2 id="modal-title" class="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Share Profile
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Share this digital business card with your network.
+          </p>
+        </div>
+        <button id="modal-close-btn" type="button" aria-label="Close modal"
+          class="h-9 w-9 rounded-lg flex items-center justify-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- 2. Read-Only URL Input Field with Copy Button -->
+      <div class="mt-5">
+        <label for="share-url-input" class="text-xs font-medium text-zinc-500 dark:text-zinc-400 block mb-1.5">
+          Page Link
+        </label>
+        <div class="flex items-center gap-2">
+          <input id="share-url-input" type="text" readonly
+            class="flex h-11 w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-3.5 text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 font-mono truncate focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 select-all" />
+          <button id="modal-copy-btn" type="button"
+            class="inline-flex items-center justify-center gap-1.5 h-11 px-4 rounded-xl bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-xs sm:text-sm font-semibold transition-all active:scale-95 shrink-0 shadow-sm focus:outline-none">
+            <svg id="copy-icon" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+            </svg>
+            <svg id="copied-check-icon" class="w-4 h-4 hidden text-emerald-500" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span id="copy-btn-text">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="relative my-5">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-zinc-200 dark:border-zinc-800"></div>
+        </div>
+        <div class="relative flex justify-center text-xs uppercase">
+          <span class="bg-white dark:bg-zinc-900 px-2.5 text-zinc-400 dark:text-zinc-500 font-medium tracking-wider">
+            Quick Share
+          </span>
+        </div>
+      </div>
+
+      <!-- 3. Grid of Quick-Share Icon Buttons -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <!-- WhatsApp Quick Share -->
+        <a id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-1.5 p-3 min-h-[58px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-950/60 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all active:scale-95 text-zinc-800 dark:text-zinc-200">
+          <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-500 transition-transform group-hover:scale-110"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.42 1.44.54.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z" />
+          </svg>
+          <span class="text-xs font-medium tracking-tight">WhatsApp</span>
+        </a>
+
+        <!-- LinkedIn Quick Share -->
+        <a id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-1.5 p-3 min-h-[58px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-950/60 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all active:scale-95 text-zinc-800 dark:text-zinc-200">
+          <svg class="w-5 h-5 text-sky-600 dark:text-sky-500 transition-transform group-hover:scale-110"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+          <span class="text-xs font-medium tracking-tight">LinkedIn</span>
+        </a>
+
+        <!-- Email Quick Share -->
+        <a id="share-email" href="#" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-1.5 p-3 min-h-[58px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-950/60 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all active:scale-95 text-zinc-800 dark:text-zinc-200">
+          <svg class="w-5 h-5 text-zinc-700 dark:text-zinc-300 transition-transform group-hover:scale-110"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span class="text-xs font-medium tracking-tight">Email</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    /* ==========================================================================
+       DYNAMIC SUBDOMAIN CONFIGURATION
+       ========================================================================== */
+    const SUBDOMAIN_CONFIG = {
+      'default': {
+        title: 'Rahul Gupta | AI/ML, Data Engineering & Quantum Computing',
+        subtitle: 'AI/ML, Data Engineering & Quantum Computing',
+        resume: './resumes/general_resume.pdf'
+      },
+      'de-': {
+        title: 'Rahul Gupta | Data Engineer | Big Data, Streaming & Analytics',
+        subtitle: 'Data Engineer | Big Data, Streaming & Analytics',
+        resume: './resumes/de_resume.pdf'
+      },
+      'fsd-': {
+        title: 'Rahul Gupta | Full Stack Developer | Scalable Web & Systems',
+        subtitle: 'Full Stack Developer | Scalable Web & Systems',
+        resume: './resumes/fsd_resume.pdf'
+      },
+      'qc-': {
+        title: 'Rahul Gupta | Quantum Computing Researcher | Qiskit & Variational Algorithms',
+        subtitle: 'Quantum Computing Researcher | Qiskit & Variational Algorithms',
+        resume: './resumes/qc_resume.pdf'
+      },
+      'aiml-': {
+        title: 'Rahul Gupta | AI & Machine Learning Engineer | Deep Learning & Agents',
+        subtitle: 'AI & Machine Learning Engineer | Deep Learning & Agents',
+        resume: './resumes/aiml_resume.pdf'
+      },
+      'qml-': {
+        title: 'Rahul Gupta | Quantum AI/ML Researcher | Hybrid Quantum-Classical Models',
+        subtitle: 'Quantum AI/ML Researcher | Hybrid Quantum-Classical Models',
+        resume: './resumes/qml_resume.pdf'
+      },
+      'pythondev-': {
+        title: 'Rahul Gupta | Python Developer | Backend, Automation & Data Pipelines',
+        subtitle: 'Python Developer | Backend, Automation & Data Pipelines',
+        resume: './resumes/pythondev_resume.pdf'
+      }
+    };
+
+    /**
+     * Resolves and applies active configuration based on subdomain or ?domain= query param.
+     */
+    function applyDynamicSubdomainConfig() {
+      const urlParams = new URLSearchParams(window.location.search);
+      // Query param fallback supports values like ?domain=de, ?domain=de-, ?domain=de-rahul-gupta.runs-on.dev
+      const targetHost = (urlParams.get('domain') || window.location.hostname || '').toLowerCase().trim();
+
+      const prefixKeys = ['de-', 'fsd-', 'qc-', 'aiml-', 'qml-', 'pythondev-'];
+      let selectedConfig = SUBDOMAIN_CONFIG['default'];
+
+      for (const prefix of prefixKeys) {
+        const rawKey = prefix.slice(0, -1); // e.g. "de"
+        if (
+          targetHost.startsWith(prefix) ||
+          targetHost === rawKey ||
+          targetHost.startsWith(rawKey + '.') ||
+          targetHost.startsWith(rawKey + '-')
+        ) {
+          selectedConfig = SUBDOMAIN_CONFIG[prefix];
+          break;
+        }
+      }
+
+      // Update Page Title
+      document.title = selectedConfig.title;
+
+      // Update Dynamic Subtitle
+      const subtitleEl = document.getElementById('profile-subtitle');
+      if (subtitleEl) {
+        subtitleEl.textContent = selectedConfig.subtitle;
+      }
+
+      // Update Resume PDF Link
+      const resumeLinkEl = document.getElementById('resume-link');
+      if (resumeLinkEl) {
+        resumeLinkEl.href = selectedConfig.resume;
+      }
+    }
+
+    /* ==========================================================================
+       THEME CONTROLS (LIGHT / DARK)
+       ========================================================================== */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    function syncThemeIcons() {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDarkNow = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+      syncThemeIcons();
+    });
+
+    /* ==========================================================================
+       SHARE MODAL DIALOG (SHADCN/UI STYLE)
+       ========================================================================== */
+    const shareBtn = document.getElementById('share-btn');
+    const shareModal = document.getElementById('share-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalContent = document.getElementById('modal-content');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const shareUrlInput = document.getElementById('share-url-input');
+    const modalCopyBtn = document.getElementById('modal-copy-btn');
+    const copyIcon = document.getElementById('copy-icon');
+    const copiedCheckIcon = document.getElementById('copied-check-icon');
+    const copyBtnText = document.getElementById('copy-btn-text');
+
+    const shareWhatsapp = document.getElementById('share-whatsapp');
+    const shareLinkedin = document.getElementById('share-linkedin');
+    const shareEmail = document.getElementById('share-email');
+
+    let copyResetTimeout;
+
+    function populateShareLinks() {
+      const currentUrl = window.location.href;
+
+      // Update read-only input
+      if (shareUrlInput) {
+        shareUrlInput.value = currentUrl;
+      }
+
+      const encodedUrl = encodeURIComponent(currentUrl);
+
+      // WhatsApp Quick Share Intent
+      if (shareWhatsapp) {
+        shareWhatsapp.href = `https://api.whatsapp.com/send?text=Check%20out%20Rahul%20Gupta's%20profile:%20${encodedUrl}`;
+      }
+
+      // LinkedIn Quick Share Intent
+      if (shareLinkedin) {
+        shareLinkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      }
+
+      // Email Quick Share Intent
+      if (shareEmail) {
+        shareEmail.href = `mailto:?subject=Rahul%20Gupta%20-%20Professional%20Profile&body=Check%20out%20this%20profile:%20${encodedUrl}`;
+      }
+    }
+
+    function openShareModal() {
+      populateShareLinks();
+      shareModal.classList.remove('opacity-0', 'pointer-events-none');
+      shareModal.classList.add('opacity-100', 'pointer-events-auto');
+      modalContent.classList.remove('scale-95');
+      modalContent.classList.add('scale-100');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeShareModal() {
+      shareModal.classList.remove('opacity-100', 'pointer-events-auto');
+      shareModal.classList.add('opacity-0', 'pointer-events-none');
+      modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
+      document.body.classList.remove('overflow-hidden');
+      resetCopyButtonState();
+    }
+
+    function resetCopyButtonState() {
+      clearTimeout(copyResetTimeout);
+      if (copyBtnText) copyBtnText.textContent = 'Copy';
+      if (copyIcon) copyIcon.classList.remove('hidden');
+      if (copiedCheckIcon) copiedCheckIcon.classList.add('hidden');
+    }
+
+    function copyShareUrl() {
+      const urlToCopy = (shareUrlInput && shareUrlInput.value) ? shareUrlInput.value : window.location.href;
+
+      const notifyCopied = () => {
+        if (copyBtnText) copyBtnText.textContent = 'Copied!';
+        if (copyIcon) copyIcon.classList.add('hidden');
+        if (copiedCheckIcon) copiedCheckIcon.classList.remove('hidden');
+
+        clearTimeout(copyResetTimeout);
+        copyResetTimeout = setTimeout(() => {
+          resetCopyButtonState();
+        }, 2000);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(urlToCopy)
+          .then(notifyCopied)
+          .catch(() => fallbackCopyInput(urlToCopy, notifyCopied));
+      } else {
+        fallbackCopyInput(urlToCopy, notifyCopied);
+      }
+    }
+
+    function fallbackCopyInput(text, callback) {
+      if (shareUrlInput) {
+        shareUrlInput.select();
+        shareUrlInput.setSelectionRange(0, 99999);
+      }
+      try {
+        const successful = document.execCommand('copy');
+        if (successful && callback) callback();
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+    }
+
+    // Modal Trigger Listeners
+    shareBtn.addEventListener('click', openShareModal);
+    modalCloseBtn.addEventListener('click', closeShareModal);
+    modalBackdrop.addEventListener('click', closeShareModal);
+
+    // Close on backdrop / outside container click
+    shareModal.addEventListener('click', (e) => {
+      if (e.target === shareModal) {
+        closeShareModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !shareModal.classList.contains('pointer-events-none')) {
+        closeShareModal();
+      }
+    });
+
+    // Copy Button click handler
+    modalCopyBtn.addEventListener('click', copyShareUrl);
+
+    /* ==========================================================================
+       INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Apply Subdomain Configuration
+      applyDynamicSubdomainConfig();
+
+      // 2. Sync Theme Toggle Icons
+      syncThemeIcons();
+
+      // 3. Pre-fill Share Links
+      populateShareLinks();
+
+      // 4. Set Dynamic Year in Footer
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+</body>
+
+</html>
